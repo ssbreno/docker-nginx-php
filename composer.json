@@ -1,0 +1,34 @@
+{
+    "name": "docker-build-slimphp",
+    "description": "SlimPHP - Docker Run SlimPHP",
+    "keywords": ["microframework", "rest", "router", "psr7"],
+    "homepage": "https://github.com/ssbreno/docker-build-slimphp",
+    "authors": [
+        {
+            "name": "Breno Sobral",
+            "email": "ssobralbreno@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "slim/slim": "^3.11",
+        "slim/php-view": "^2.0",
+        "monolog/monolog": "^1.17"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8 < 6.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "" : "/src/"
+        }
+    },
+    "config": {
+        "process-timeout" : 4000
+    },
+    "scripts": {
+        "start": "php -S localhost:8082 -t public",
+        "test": "phpunit"
+    }
+
+}
