@@ -1,23 +1,17 @@
-version: '2'
-
-volumes:
- php-data:
+version: '3'
 
 services:
-    api:
-        image: docker-build-slimphp
-        container_name: docker-build-slimphp
+    app:
+        image: docker-build-apache
+        container_name: docker-build-apache
         build:
             context: ./
             dockerfile: ./docker/php56/Dockerfile
-        command: php -S 0.0.0.0:8082 -t public
-        environment:
-            docker: "true"
         ports:
-            - 8082:8082
+            - "80:80"
         volumes:
             - .:/var/www/html
-            - php-data:/var/www/html/vendor/
+
 
 
 
