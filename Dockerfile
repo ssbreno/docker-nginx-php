@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:7.4-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     locales \
+    libzip-dev \
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
@@ -14,7 +15,13 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
-RUN docker-php-ext-install mysqli   
+# Install extensions
+RUN apt-get update -y
+RUN docker-php-ext-install gd
+RUN apt-get install libsodium-dev -y
+RUN docker-php-ext-install sodium
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install zip   
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -32,8 +39,6 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 RUN composer install
-
-RUN composer dump-autoload
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
