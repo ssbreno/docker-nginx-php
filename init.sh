@@ -24,7 +24,7 @@ clear
 
 # Cabeçalho
 echo ' '
-printf "${GREEN}https://github.com/ssbreno/docker-build-apache \n"
+printf "${GREEN}https://github.com/ssbreno/docker-nginx-php7 \n"
 echo ' '
 
 if [ $(uname) == "Darwin" ]; then
